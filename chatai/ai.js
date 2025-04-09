@@ -95,7 +95,7 @@
         <div id="nex-buddy-content">
           <button id="nex-buddy-close">Close</button>
           <div id="nex-buddy-iframe-container">
-            <iframe src="https://example.com" title="nex-buddy iframe"></iframe>
+            <iframe src="https://nexgeno.in/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
         <button id="nex-buddy-icon">🤖</button>
