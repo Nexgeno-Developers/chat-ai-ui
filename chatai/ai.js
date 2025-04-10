@@ -15,9 +15,9 @@
     }
 
     // Get customizable attributes with defaults
-    const bgColor = thisScript?.getAttribute("data-bg-color") || "";
-    const position = thisScript?.getAttribute("data-position") || "";
-    const iconImage = thisScript?.getAttribute("data-icon-image") || "";
+    const bgColor = thisScript?.getAttribute("data-bg-color") || "#005fff";
+    const position = thisScript?.getAttribute("data-position") || "right";
+    const iconImage = thisScript?.getAttribute("data-icon-image") || "chat.png";
 
     let container = document.getElementById("nex-buddy-container");
 
@@ -52,6 +52,7 @@
           transition: transform 0.3s ease;
           padding: 0;
           overflow: hidden;
+          position: relative;
         }
 
         #nex-buddy-icon:hover {
@@ -95,14 +96,33 @@
           cursor: pointer;
           font-weight: bold;
           width: 100%;
+          display:none;
         }
 
         button#nex-buddy-icon img {
-          width: 35px;
-          height: 35px;
-          object-fit: contain;
+          width: 30px;
+          transition: opacity 0.3s ease;
         }
 
+        button#nex-buddy-icon .close-icon {
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        button#nex-buddy-icon.active .chat_icons_img {
+          opacity: 0;
+        }
+          button#nex-buddy-icon span.close-icon img {
+              position: relative;
+              top: 3px;
+              width: 26px;
+          }
+
+        button#nex-buddy-icon.active .close-icon {
+          opacity: 1;
+        }
+          
         @media (max-width: 767px) {
           #nex-buddy-content {
             width: calc(100vw - 40px);
@@ -116,7 +136,10 @@
 
           button#nex-buddy-icon img {
             width: 30px;
-            height: 30px;
+          }
+
+          button#nex-buddy-icon .close-icon {
+            font-size: 24px;
           }
         }
       </style>
@@ -125,10 +148,13 @@
         <div id="nex-buddy-content">
           <button id="nex-buddy-close">Close</button>
           <div id="nex-buddy-iframe-container">
-            <iframe src="https://nexgeno.in/" title="nex-buddy iframe"></iframe>
+            <iframe src="https://attariclasses.in/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
-        <button id="nex-buddy-icon"><img src="${iconImage}" alt="Chat Icon" /></button>
+        <button id="nex-buddy-icon">
+          <img class="chat_icons_img" src="${iconImage}" alt="Chat Icon" />
+          <span class="close-icon"><img src="close-icon.png" alt="Chat Icon" /></span>
+        </button>
       </div>
     `;
 
@@ -140,10 +166,12 @@
 
     widgetIcon.addEventListener("click", function () {
       widgetContent.classList.toggle("active");
+      widgetIcon.classList.toggle("active");
     });
 
     closeBtn.addEventListener("click", function () {
       widgetContent.classList.remove("active");
+      widgetIcon.classList.remove("active");
     });
 
     document.addEventListener("click", function (e) {
@@ -153,6 +181,7 @@
         !widgetIcon.contains(e.target)
       ) {
         widgetContent.classList.remove("active");
+        widgetIcon.classList.remove("active");
       }
     });
 
