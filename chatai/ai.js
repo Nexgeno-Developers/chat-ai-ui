@@ -29,10 +29,11 @@
 
     const widgetHTML = `
       <style>
-      body {
-    display: block;
-    margin: 0px;
-}
+        body {
+          display: block;
+          margin: 0px;
+        }
+        
         #nex-buddy {
           position: fixed;
           bottom: 20px;
@@ -53,7 +54,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: transform 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           padding: 0;
           overflow: hidden;
           position: relative;
@@ -64,7 +65,6 @@
         }
 
         #nex-buddy-content {
-          display: none;
           position: absolute;
           bottom: 80px;
           ${position}: 0;
@@ -75,10 +75,18 @@
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
           overflow: hidden;
           flex-direction: column;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: 
+            opacity 0.25s ease-out,
+            transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+          pointer-events: none;
         }
 
         #nex-buddy-content.active {
-          display: flex;
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
         }
 
         #nex-buddy-iframe-container {
@@ -100,31 +108,35 @@
           cursor: pointer;
           font-weight: bold;
           width: 100%;
-          display:none;
+          display: none;
         }
 
         button#nex-buddy-icon img {
           width: 30px;
-          transition: opacity 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         button#nex-buddy-icon .close-icon {
           position: absolute;
           opacity: 0;
-          transition: opacity 0.3s ease;
+          transform: scale(0.5);
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         button#nex-buddy-icon.active .chat_icons_img {
           opacity: 0;
+          transform: scale(0.5);
         }
-          button#nex-buddy-icon span.close-icon img {
-              position: relative;
-              top: 3px;
-              width: 26px;
-          }
+
+        button#nex-buddy-icon span.close-icon img {
+          position: relative;
+          top: 3px;
+          width: 26px;
+        }
 
         button#nex-buddy-icon.active .close-icon {
           opacity: 1;
+          transform: scale(1);
         }
 
         @media (max-width: 767px) {
@@ -134,6 +146,11 @@
             bottom: 0;
             ${position}: 0;
             border-radius: 0;
+            transform: translateY(10%);
+          }
+
+          #nex-buddy-content.active {
+            transform: translateY(0);
           }
 
           #nex-buddy {
@@ -159,7 +176,6 @@
             width: 30px;
           }
         }
-          
       </style>
 
       <div id="nex-buddy">
@@ -171,7 +187,7 @@
         </div>
         <button id="nex-buddy-icon">
           <img class="chat_icons_img" src="${iconImage}" alt="Chat Icon" />
-          <span class="close-icon"><img src="close-icon.png" alt="Chat Icon" /></span>
+          <span class="close-icon"><img src="close-icon.png" alt="Close Icon" /></span>
         </button>
       </div>
     `;
@@ -183,13 +199,30 @@
     const closeBtn = document.getElementById("nex-buddy-close");
 
     widgetIcon.addEventListener("click", function () {
-      widgetContent.classList.toggle("active");
-      widgetIcon.classList.toggle("active");
+      const isOpening = !widgetContent.classList.contains("active");
+
+      if (isOpening) {
+        widgetContent.style.display = "flex";
+        // Trigger reflow to enable animation
+        void widgetContent.offsetWidth;
+        widgetContent.classList.add("active");
+        widgetIcon.classList.add("active");
+      } else {
+        widgetContent.classList.remove("active");
+        widgetIcon.classList.remove("active");
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+          widgetContent.style.display = "none";
+        }, 300);
+      }
     });
 
     closeBtn.addEventListener("click", function () {
       widgetContent.classList.remove("active");
       widgetIcon.classList.remove("active");
+      setTimeout(() => {
+        widgetContent.style.display = "none";
+      }, 300);
     });
 
     document.addEventListener("click", function (e) {
@@ -200,6 +233,9 @@
       ) {
         widgetContent.classList.remove("active");
         widgetIcon.classList.remove("active");
+        setTimeout(() => {
+          widgetContent.style.display = "none";
+        }, 300);
       }
     });
 
