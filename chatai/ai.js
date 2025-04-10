@@ -29,6 +29,10 @@
 
     const widgetHTML = `
       <style>
+      body {
+    display: block;
+    margin: 0px;
+}
         #nex-buddy {
           position: fixed;
           bottom: 20px;
@@ -122,26 +126,40 @@
         button#nex-buddy-icon.active .close-icon {
           opacity: 1;
         }
-          
+
         @media (max-width: 767px) {
           #nex-buddy-content {
-            width: calc(100vw - 40px);
-            height: 300px;
+            width: 100vw;
+            height: 100vh;
+            bottom: 0;
+            ${position}: 0;
+            border-radius: 0;
+          }
+
+          #nex-buddy {
+            ${position}: 0;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: ${
+              position === "right" ? "flex-end" : "flex-start"
+            };
+            padding: 10px;
+            box-sizing: border-box;
           }
 
           #nex-buddy-icon {
             width: 50px;
             height: 50px;
+            position: relative;
+            z-index: 100001;
           }
 
           button#nex-buddy-icon img {
             width: 30px;
           }
-
-          button#nex-buddy-icon .close-icon {
-            font-size: 24px;
-          }
         }
+          
       </style>
 
       <div id="nex-buddy">
