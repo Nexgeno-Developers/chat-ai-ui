@@ -42,8 +42,8 @@
         }
 
         #nex-buddy-icon {
-          width: 60px;
-          height: 60px;
+          width: 55px;
+          height: 55px;
           border-radius: 50%;
           background-color: ${bgColor};
           border: none;
@@ -66,20 +66,20 @@
 
         #nex-buddy-content {
           position: absolute;
-          bottom: 80px;
+          bottom: 65px;
           ${position}: 0;
-          width: 370px;
-          height: 450px;
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-          overflow: hidden;
+              height: 520px;
+            background: rgb(255, 255, 255);
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 16px;
+            width: 416px;
           flex-direction: column;
           opacity: 0;
           transform: translateY(20px);
           transition: 
-            opacity 0.25s ease-out,
-            transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+          opacity 0.25s ease-out,
+          transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
           pointer-events: none;
         }
 
