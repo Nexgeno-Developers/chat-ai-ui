@@ -1,5 +1,24 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
+    // Get the script element that contains this code
+    const scripts = document.getElementsByTagName("script");
+    let thisScript = null;
+
+    for (let i = 0; i < scripts.length; i++) {
+      if (
+        scripts[i].src.includes("ai.js") ||
+        scripts[i].innerHTML.includes("nex-buddy-container")
+      ) {
+        thisScript = scripts[i];
+        break;
+      }
+    }
+
+    // Get customizable attributes with defaults
+    const bgColor = thisScript?.getAttribute("data-bg-color") || "";
+    const position = thisScript?.getAttribute("data-position") || "";
+    const iconImage = thisScript?.getAttribute("data-icon-image") || "";
+
     let container = document.getElementById("nex-buddy-container");
 
     if (!container) {
@@ -13,7 +32,7 @@
         #nex-buddy {
           position: fixed;
           bottom: 20px;
-          right: 20px;
+          ${position}: 20px;
           z-index: 100000;
         }
 
@@ -21,7 +40,7 @@
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background-color: #4285f4;
+          background-color: ${bgColor};
           border: none;
           color: white;
           font-size: 24px;
@@ -31,6 +50,8 @@
           align-items: center;
           justify-content: center;
           transition: transform 0.3s ease;
+          padding: 0;
+          overflow: hidden;
         }
 
         #nex-buddy-icon:hover {
@@ -41,7 +62,7 @@
           display: none;
           position: absolute;
           bottom: 80px;
-          right: 0;
+          ${position}: 0;
           width: 370px;
           height: 450px;
           background: white;
@@ -76,17 +97,26 @@
           width: 100%;
         }
 
+        button#nex-buddy-icon img {
+          width: 35px;
+          height: 35px;
+          object-fit: contain;
+        }
+
         @media (max-width: 767px) {
           #nex-buddy-content {
             width: calc(100vw - 40px);
             height: 300px;
-            right: -20px;
           }
 
           #nex-buddy-icon {
             width: 50px;
             height: 50px;
-            font-size: 20px;
+          }
+
+          button#nex-buddy-icon img {
+            width: 30px;
+            height: 30px;
           }
         }
       </style>
@@ -98,7 +128,7 @@
             <iframe src="https://nexgeno.in/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
-        <button id="nex-buddy-icon">🤖</button>
+        <button id="nex-buddy-icon"><img src="${iconImage}" alt="Chat Icon" /></button>
       </div>
     `;
 
