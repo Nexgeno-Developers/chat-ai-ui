@@ -110,8 +110,8 @@
         }
         #nex-buddy-close {
             position: absolute;
-            top: 20px;
-            right: 10px;
+            top: 15px;
+            right: 18px;
             z-index: 100001;
             padding: 5px;
             width: 30px;
@@ -181,7 +181,7 @@
             <button id="nex-buddy-close">
               <img src="close-icon.png" alt="Close Icon" width="20" />
             </button>
-            <iframe src="https://attariclasses.in/" title="nex-buddy iframe"></iframe>
+            <iframe src="http://13.202.55.24/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
         <button id="nex-buddy-icon">
