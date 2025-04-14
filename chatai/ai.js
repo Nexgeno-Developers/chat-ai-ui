@@ -29,17 +29,15 @@
 
     // Create audio elements for notification sounds
     const notificationSound = new Audio();
-    notificationSound.src =
-      "https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3";
+    notificationSound.src = "audio1.mp3";
     notificationSound.volume = 0.3;
 
     const closeSound = new Audio();
-    closeSound.src =
-      "https://assets.mixkit.co/sfx/preview/mixkit-alert-quick-chime-766.mp3";
+    closeSound.src = "audio1.mp3";
     closeSound.volume = 0.3;
 
     const widgetHTML = `
-      <style>
+     <style>
         body {
           display: block;
           margin: 0px;
@@ -165,8 +163,8 @@
           max-width: 250px;
           display: none;
           align-items: center;
+          justify-content: center;
           z-index: 100000;
-          cursor: pointer;
           animation: fadeIn 0.3s ease-out;
         }
 
@@ -176,8 +174,8 @@
         }
 
         #nex-buddy-message-text {
-          flex-grow: 1;
-          margin-right: 10px;
+          margin-right: 20px;
+          text-align: center;
         }
 
         #nex-buddy-message-close {
@@ -188,10 +186,20 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          position: absolute;
+          top: 12px;
+          right: 7px;
+          width: 20px;
+          height: 20px;
         }
 
         #nex-buddy-message-close img {
-          width: 12px;
+          width: 14px;
+          opacity: 1;
+          transition: opacity 0.2s ease;
+        }
+
+        #nex-buddy-message-close:hover img {
           opacity: 1;
         }
 
@@ -233,8 +241,8 @@
           }
 
           #nex-buddy-message {
-            ${position}: 20px;
-            bottom: 80px;
+            right: 12px;
+            bottom: 65px;
             max-width: calc(100% - 40px);
           }
         }
@@ -253,7 +261,7 @@
           <img src="${iconImage}" alt="Chat Icon" />
         </button>
         <div id="nex-buddy-message">
-          <div id="nex-buddy-message-text">Hello, how can I help you?</div>
+          <div id="nex-buddy-message-text">Hello, Can I help you?</div>
           <button id="nex-buddy-message-close">
             <img src="close-icon2.png" alt="Close" />
           </button>
@@ -270,14 +278,20 @@
     const messageCloseBtn = document.getElementById("nex-buddy-message-close");
     const messageText = document.getElementById("nex-buddy-message-text");
 
+    // Check if message was permanently closed
+    const messageClosed =
+      localStorage.getItem("nexBuddyMessageClosed") === "true";
+
     // Show message when chat is closed
     function showMessage() {
-      message.style.display = "flex";
-      try {
-        notificationSound.currentTime = 0; // Reset audio to start
-        notificationSound.play();
-      } catch (e) {
-        console.log("Notification sound error:", e);
+      if (!messageClosed) {
+        message.style.display = "flex";
+        try {
+          notificationSound.currentTime = 0;
+          notificationSound.play();
+        } catch (e) {
+          console.log("Notification sound error:", e);
+        }
       }
     }
 
@@ -286,10 +300,10 @@
       message.style.display = "none";
     }
 
-    // Show message after 2 seconds
-    setTimeout(() => {
-      showMessage();
-    }, 2000);
+    // Show message after 2 seconds if not permanently closed
+    if (!messageClosed) {
+      setTimeout(showMessage, 2000);
+    }
 
     function openChat() {
       widgetContent.style.display = "flex";
@@ -304,7 +318,6 @@
       widgetIcon.classList.remove("active");
       setTimeout(() => {
         widgetContent.style.display = "none";
-        showMessage();
       }, 300);
     }
 
@@ -315,22 +328,21 @@
       closeChat();
     });
 
-    // Make message clickable to open chat
+    // Remove the click handler for the message since we don't want it to open chat
     message.addEventListener("click", function (e) {
-      // Only open if click is on message text or background
-      if (e.target === message || e.target === messageText) {
-        openChat();
-      }
+      e.stopPropagation(); // Prevent any click events from bubbling
     });
 
     messageCloseBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       try {
-        closeSound.currentTime = 0; // Reset audio to start
+        closeSound.currentTime = 0;
         closeSound.play();
       } catch (e) {
         console.log("Close sound error:", e);
       }
+      // Set flag in localStorage that message was closed (permanently)
+      localStorage.setItem("nexBuddyMessageClosed", "true");
       message.style.display = "none";
     });
 
