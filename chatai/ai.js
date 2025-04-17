@@ -119,7 +119,7 @@
         #nex-buddy-close {
             position: absolute;
             top: 20px;
-            right: 10px;
+            right: 36px;
             z-index: 100001;
             padding: 5px;
             width: 48px;
@@ -216,7 +216,13 @@
           #nex-buddy-content.active {
             transform: translateY(0);
           }
-
+#nex-buddy-close {
+    top: 18px;
+    right: 32px;
+    padding: 5px;
+    width: 44px;
+    height: 44px;
+}
           #nex-buddy {
             ${position}: 0;
             bottom: 0;
