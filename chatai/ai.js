@@ -258,7 +258,7 @@
         <div id="nex-buddy-content">
           <div id="nex-buddy-iframe-container">
             <button id="nex-buddy-close">
-              <img src="close-icon3.png" alt="Close Icon" width="20" />
+              <img src="https://ai.rajeshdeshmukh.co.uk/chatjs/close-icon3.png" alt="Close Icon" width="20" />
             </button>
             <iframe src="https://ai.rajeshdeshmukh.co.uk/" title="nex-buddy iframe"></iframe>
           </div>
@@ -269,7 +269,7 @@
         <div id="nex-buddy-message">
           <div id="nex-buddy-message-text">Hello, Can I help you?</div>
           <button id="nex-buddy-message-close">
-            <img src="close-icon2.png" alt="Close" />
+            <img src="https://ai.rajeshdeshmukh.co.uk/chatjs/close-icon2.png" alt="Close" />
           </button>
         </div>
       </div>
