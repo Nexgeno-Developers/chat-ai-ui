@@ -216,13 +216,7 @@
           #nex-buddy-content.active {
             transform: translateY(0);
           }
-#nex-buddy-close {
-    top: 18px;
-    right: 32px;
-    padding: 5px;
-    width: 44px;
-    height: 44px;
-}
+
           #nex-buddy {
             ${position}: 0;
             bottom: 0;
