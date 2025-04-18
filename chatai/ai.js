@@ -260,7 +260,7 @@
             <button id="nex-buddy-close">
               <img src="close-icon3.png" alt="Close Icon" width="20" />
             </button>
-            <iframe src="http://13.202.55.24/" title="nex-buddy iframe"></iframe>
+            <iframe src="https://ai.rajeshdeshmukh.co.uk/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
         <button id="nex-buddy-icon">
