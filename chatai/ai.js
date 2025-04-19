@@ -202,7 +202,7 @@
         #nex-buddy-message-close:hover img {
           opacity: 1;
         }
-
+ 
         @media (max-width: 767px) {
           #nex-buddy-content {
             width: 100vw;
@@ -232,8 +232,8 @@
           #nex-buddy-icon {
             width: 45px;
             height: 45px;
-            position: relative;
-            z-index: 100001;
+            position: relative !important;
+            z-index: 100001 ;
           }
 
           button#nex-buddy-icon img {
