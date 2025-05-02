@@ -252,9 +252,9 @@
         <div id="nex-buddy-content">
           <div id="nex-buddy-iframe-container">
             <button id="nex-buddy-close">
-              <img src="https://ai.rajeshdeshmukh.co.uk/chatjs/close-icon3.png" alt="Close Icon" width="20" />
+              <img src="https://ai.nexgeno.in/chatjs-nexgeno/close-icon3.png" alt="Close Icon" width="20" />
             </button>
-            <iframe src="https://ai.rajeshdeshmukh.co.uk/" title="nex-buddy iframe"></iframe>
+            <iframe src="https://ai.nexgeno.in/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
         <button id="nex-buddy-icon">
@@ -263,7 +263,7 @@
         <div id="nex-buddy-message">
           <div id="nex-buddy-message-text">Hello, Can I help you?</div>
           <button id="nex-buddy-message-close">
-            <img src="https://ai.rajeshdeshmukh.co.uk/chatjs/close-icon2.png" alt="Close" />
+            <img src="https://ai.nexgeno.in/chatjs-nexgeno/close-icon2.png" alt="Close" />
           </button>
         </div>
       </div>
