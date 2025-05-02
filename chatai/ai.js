@@ -261,7 +261,7 @@
           <img src="${iconImage}" alt="Chat Icon" />
         </button>
         <div id="nex-buddy-message">
-          <div id="nex-buddy-message-text">Hello, Can I help you?</div>
+          <div id="nex-buddy-message-text">What can I help with?</div>
           <button id="nex-buddy-message-close">
             <img src="https://ai.nexgeno.in/chatjs-nexgeno/close-icon2.png" alt="Close" />
           </button>
