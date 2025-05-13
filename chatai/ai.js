@@ -204,6 +204,15 @@
         }
  
         @media (max-width: 767px) {
+
+        #nex-buddy-message-text {
+    font-size: 14px;
+}
+#nex-buddy-message-close {
+    top: 6px;
+    right: 7px;
+}
+
           #nex-buddy-content {
             width: 100vw;
             height: 100vh;
@@ -239,11 +248,13 @@
           button#nex-buddy-icon img {
             width: 23px;
           }
-
+#nex-buddy-message {
+    padding: 6px 8px;
+}
           #nex-buddy-message {
             right: 12px;
             bottom: 65px;
-            max-width: calc(100% - 40px);
+            max-width: calc(100% - 177px);
           }
         }
       </style>
@@ -279,21 +290,21 @@
     const messageText = document.getElementById("nex-buddy-message-text");
 
     // Check if message was permanently closed
-    const messageClosed =
-      localStorage.getItem("nexBuddyMessageClosed") === "true";
+       //const messageClosed =
+      //localStorage.getItem("nexBuddyMessageClosed") === "true";
 
     // Show message when chat is closed
-    function showMessage() {
-      if (!messageClosed) {
-        message.style.display = "flex";
-        try {
-          notificationSound.currentTime = 0;
-          notificationSound.play();
-        } catch (e) {
-          console.log("Notification sound error:", e);
-        }
-      }
-    }
+    // function showMessage() {
+    //   if (!messageClosed) {
+    //     message.style.display = "flex";
+    //     try {
+    //       notificationSound.currentTime = 0;
+    //       notificationSound.play();
+    //     } catch (e) {
+    //       console.log("Notification sound error:", e);
+    //     }
+    //   }
+    // }
 
     // Hide message when chat is opened
     function hideMessage() {
