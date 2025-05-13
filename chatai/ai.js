@@ -176,6 +176,7 @@
         #nex-buddy-message-text {
           margin-right: 20px;
           text-align: center;
+          color: #000;
         }
 
         #nex-buddy-message-close {
