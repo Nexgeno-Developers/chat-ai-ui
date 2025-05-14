@@ -313,9 +313,9 @@
     }
 
     // Show message after 2 seconds if not permanently closed
-    if (!messageClosed) {
-      setTimeout(showMessage, 2000);
-    }
+    // if (!messageClosed) {
+    //   setTimeout(showMessage, 2000);
+    // }
 
     function openChat() {
       widgetContent.style.display = "flex";
