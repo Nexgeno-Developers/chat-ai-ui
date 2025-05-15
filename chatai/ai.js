@@ -28,13 +28,13 @@
     }
 
     // Create audio elements for notification sounds
-    const notificationSound = new Audio();
-    notificationSound.src = "audio1.mp3";
-    notificationSound.volume = 0.3;
+    // const notificationSound = new Audio();
+    // notificationSound.src = "audio1.mp3";
+    // notificationSound.volume = 0.3;
 
-    const closeSound = new Audio();
-    closeSound.src = "audio1.mp3";
-    closeSound.volume = 0.3;
+    // const closeSound = new Audio();
+    // closeSound.src = "audio1.mp3";
+    // closeSound.volume = 0.3;
 
     const widgetHTML = `
      <style>
@@ -176,6 +176,7 @@
         #nex-buddy-message-text {
           margin-right: 20px;
           text-align: center;
+          color: #000;
         }
 
         #nex-buddy-message-close {
@@ -204,6 +205,15 @@
         }
  
         @media (max-width: 767px) {
+
+        #nex-buddy-message-text {
+    font-size: 14px;
+}
+#nex-buddy-message-close {
+    top: 6px;
+    right: 7px;
+}
+
           #nex-buddy-content {
             width: 100vw;
             height: 100vh;
@@ -239,11 +249,13 @@
           button#nex-buddy-icon img {
             width: 23px;
           }
-
+#nex-buddy-message {
+    padding: 6px 8px;
+}
           #nex-buddy-message {
             right: 12px;
             bottom: 65px;
-            max-width: calc(100% - 40px);
+            max-width: calc(100% - 177px);
           }
         }
       </style>
@@ -252,18 +264,18 @@
         <div id="nex-buddy-content">
           <div id="nex-buddy-iframe-container">
             <button id="nex-buddy-close">
-              <img src="https://ai.rajeshdeshmukh.co.uk/chatjs/close-icon3.png" alt="Close Icon" width="20" />
+              <img src="https://ai.nexgeno.in/chatjs-nexgeno/close-icon3.png" alt="Close Icon" width="20" />
             </button>
-            <iframe src="https://ai.rajeshdeshmukh.co.uk/" title="nex-buddy iframe"></iframe>
+            <iframe src="https://ai.nexgeno.in/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
         <button id="nex-buddy-icon">
           <img src="${iconImage}" alt="Chat Icon" />
         </button>
         <div id="nex-buddy-message">
-          <div id="nex-buddy-message-text">Hello, Can I help you?</div>
+          <div id="nex-buddy-message-text">What can I help with?</div>
           <button id="nex-buddy-message-close">
-            <img src="https://ai.rajeshdeshmukh.co.uk/chatjs/close-icon2.png" alt="Close" />
+            <img src="https://ai.nexgeno.in/chatjs-nexgeno/close-icon2.png" alt="Close" />
           </button>
         </div>
       </div>
@@ -279,21 +291,21 @@
     const messageText = document.getElementById("nex-buddy-message-text");
 
     // Check if message was permanently closed
-    const messageClosed =
-      localStorage.getItem("nexBuddyMessageClosed") === "true";
+       //const messageClosed =
+      //localStorage.getItem("nexBuddyMessageClosed") === "true";
 
     // Show message when chat is closed
-    function showMessage() {
-      if (!messageClosed) {
-        message.style.display = "flex";
-        try {
-          notificationSound.currentTime = 0;
-          notificationSound.play();
-        } catch (e) {
-          console.log("Notification sound error:", e);
-        }
-      }
-    }
+    // function showMessage() {
+    //   if (!messageClosed) {
+    //     message.style.display = "flex";
+    //     try {
+    //       notificationSound.currentTime = 0;
+    //       notificationSound.play();
+    //     } catch (e) {
+    //       console.log("Notification sound error:", e);
+    //     }
+    //   }
+    // }
 
     // Hide message when chat is opened
     function hideMessage() {
@@ -301,9 +313,9 @@
     }
 
     // Show message after 2 seconds if not permanently closed
-    if (!messageClosed) {
-      setTimeout(showMessage, 2000);
-    }
+    // if (!messageClosed) {
+    //   setTimeout(showMessage, 2000);
+    // }
 
     function openChat() {
       widgetContent.style.display = "flex";
