@@ -28,13 +28,13 @@
     }
 
     // Create audio elements for notification sounds
-    const notificationSound = new Audio();
-    notificationSound.src = "audio1.mp3";
-    notificationSound.volume = 0.3;
+    // const notificationSound = new Audio();
+    // notificationSound.src = "audio1.mp3";
+    // notificationSound.volume = 0.3;
 
-    const closeSound = new Audio();
-    closeSound.src = "audio1.mp3";
-    closeSound.volume = 0.3;
+    // const closeSound = new Audio();
+    // closeSound.src = "audio1.mp3";
+    // closeSound.volume = 0.3;
 
     const widgetHTML = `
      <style>
@@ -313,9 +313,9 @@
     }
 
     // Show message after 2 seconds if not permanently closed
-    if (!messageClosed) {
-      setTimeout(showMessage, 2000);
-    }
+    // if (!messageClosed) {
+    //   setTimeout(showMessage, 2000);
+    // }
 
     function openChat() {
       widgetContent.style.display = "flex";
