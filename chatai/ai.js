@@ -27,8 +27,17 @@
       document.body.appendChild(container);
     }
 
+    // Create audio elements for notification sounds
+    // const notificationSound = new Audio();
+    // notificationSound.src = "audio1.mp3";
+    // notificationSound.volume = 0.3;
+
+    // const closeSound = new Audio();
+    // closeSound.src = "audio1.mp3";
+    // closeSound.volume = 0.3;
+
     const widgetHTML = `
-      <style>
+     <style>
         body {
           display: block;
           margin: 0px;
@@ -78,8 +87,8 @@
           opacity: 0;
           transform: translateY(20px);
           transition: 
-            opacity 0.25s ease-out,
-            transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+          opacity 0.25s ease-out,
+          transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
           pointer-events: none;
           display: none;
           z-index: 999999;
@@ -105,36 +114,35 @@
         }
 
         button#nex-buddy-close img {
-          width: 18px;
+            width: 18px;
         }
-        
         #nex-buddy-close {
-          position: absolute;
-          top: 20px;
-          right: 36px;
-          z-index: 100001;
-          padding: 5px;
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          border: 1px solid #e5e7eb;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          background: #fff;
+            position: absolute;
+            top: 20px;
+            right: 36px;
+            z-index: 100001;
+            padding: 5px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: #fff;
         }
 
         #nex-buddy-close:hover {
-          background:${bgColor};
-          border: 1px solid ${bgColor};
+            background:${bgColor};
+            border: 1px solid ${bgColor};
         }
-        
         #nex-buddy-close:hover img{
-          filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1);
         }
 
+            
         #nex-buddy-icon.active {
           display: none;
         }
@@ -197,26 +205,22 @@
         }
  
         @media (max-width: 767px) {
-          #nex-buddy-message-text {
-            font-size: 14px;
-          }
-          
-          #nex-buddy-message-close {
-            top: 6px;
-            right: 7px;
-          }
+
+        #nex-buddy-message-text {
+    font-size: 14px;
+}
+#nex-buddy-message-close {
+    top: 6px;
+    right: 7px;
+}
 
           #nex-buddy-content {
             width: 100vw;
             height: 100vh;
-            height: -webkit-fill-available;
-            height: fill-available;
-            height: calc(var(--vh, 1vh) * 100);
             bottom: 0;
             ${position}: 0;
             border-radius: 0;
-            transform: translateY(0);
-            padding-top: env(safe-area-inset-top);
+            transform: translateY(10%);
           }
 
           #nex-buddy-content.active {
@@ -228,7 +232,9 @@
             bottom: 0;
             width: 100%;
             display: flex;
-            justify-content: ${position === "right" ? "flex-end" : "flex-start"};
+            justify-content: ${
+              position === "right" ? "flex-end" : "flex-start"
+            };
             padding: 10px;
             box-sizing: border-box;
           }
@@ -237,17 +243,15 @@
             width: 45px;
             height: 45px;
             position: relative !important;
-            z-index: 100001;
+            z-index: 100001 ;
           }
 
           button#nex-buddy-icon img {
             width: 23px;
           }
-          
-          #nex-buddy-message {
-            padding: 6px 8px;
-          }
-          
+#nex-buddy-message {
+    padding: 6px 8px;
+}
           #nex-buddy-message {
             right: 12px;
             bottom: 65px;
@@ -260,9 +264,9 @@
         <div id="nex-buddy-content">
           <div id="nex-buddy-iframe-container">
             <button id="nex-buddy-close">
-              <img src="https://ai.nexgeno.in/chatjs-nexgeno/close-icon3.png" alt="Close Icon" width="20" />
+              <img src="https://ai.deonarmcgm.com/chatjs-nexgeno/close-icon3.png" alt="Close Icon" width="20" />
             </button>
-            <iframe src="https://ai.nexgeno.in/" title="nex-buddy iframe"></iframe>
+            <iframe src="https://ai.deonarmcgm.com/" title="nex-buddy iframe"></iframe>
           </div>
         </div>
         <button id="nex-buddy-icon">
@@ -271,7 +275,7 @@
         <div id="nex-buddy-message">
           <div id="nex-buddy-message-text">What can I help with?</div>
           <button id="nex-buddy-message-close">
-            <img src="https://ai.nexgeno.in/chatjs-nexgeno/close-icon2.png" alt="Close" />
+            <img src="https://ai.deonarmcgm.com/chatjs-nexgeno/close-icon2.png" alt="Close" />
           </button>
         </div>
       </div>
@@ -284,35 +288,38 @@
     const closeBtn = document.getElementById("nex-buddy-close");
     const message = document.getElementById("nex-buddy-message");
     const messageCloseBtn = document.getElementById("nex-buddy-message-close");
+    const messageText = document.getElementById("nex-buddy-message-text");
 
-    // Set the viewport height variable
-    function setViewportHeight() {
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
+    // Check if message was permanently closed
+       //const messageClosed =
+      //localStorage.getItem("nexBuddyMessageClosed") === "true";
 
-    // Initialize
-    setViewportHeight();
-    window.addEventListener('resize', setViewportHeight);
-    window.addEventListener('orientationchange', setViewportHeight);
+    // Show message when chat is closed
+    // function showMessage() {
+    //   if (!messageClosed) {
+    //     message.style.display = "flex";
+    //     try {
+    //       notificationSound.currentTime = 0;
+    //       notificationSound.play();
+    //     } catch (e) {
+    //       console.log("Notification sound error:", e);
+    //     }
+    //   }
+    // }
 
+    // Hide message when chat is opened
     function hideMessage() {
       message.style.display = "none";
     }
 
+    // Show message after 2 seconds if not permanently closed
+    // if (!messageClosed) {
+    //   setTimeout(showMessage, 2000);
+    // }
+
     function openChat() {
-      // Set display first
       widgetContent.style.display = "flex";
-      
-      // Set mobile height if needed
-      if (window.innerWidth <= 767) {
-        widgetContent.style.height = window.innerHeight + 'px';
-      }
-      
-      // Force reflow before adding active class
       void widgetContent.offsetWidth;
-      
-      // Add active class to trigger animation
       widgetContent.classList.add("active");
       widgetIcon.classList.add("active");
       hideMessage();
@@ -327,17 +334,26 @@
     }
 
     widgetIcon.addEventListener("click", openChat);
+
     closeBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       closeChat();
     });
 
+    // Remove the click handler for the message since we don't want it to open chat
     message.addEventListener("click", function (e) {
-      e.stopPropagation();
+      e.stopPropagation(); // Prevent any click events from bubbling
     });
 
     messageCloseBtn.addEventListener("click", function (e) {
       e.stopPropagation();
+      try {
+        closeSound.currentTime = 0;
+        closeSound.play();
+      } catch (e) {
+        console.log("Close sound error:", e);
+      }
+      // Set flag in localStorage that message was closed (permanently)
       localStorage.setItem("nexBuddyMessageClosed", "true");
       message.style.display = "none";
     });
@@ -353,7 +369,9 @@
     });
 
     function adjustIframeSize() {
-      const iframeContainer = document.getElementById("nex-buddy-iframe-container");
+      const iframeContainer = document.getElementById(
+        "nex-buddy-iframe-container"
+      );
       if (iframeContainer) {
         iframeContainer.style.height = "100%";
       }
